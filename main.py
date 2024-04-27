@@ -8,6 +8,11 @@ app = FastAPI()
 def index():
     return {"message": "Hola!"}
 
+@app.post("/register")
+async def user_registration(user: user_pydanticIn):
+    user_info =  user.dict(exclude_unset=True)
+    user_info["password"] = 
+
 register_tortoise(
     app, 
     db_url="sqlite://database.sqlite3",
