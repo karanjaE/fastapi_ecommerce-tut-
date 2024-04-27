@@ -28,7 +28,7 @@ class Product(Model):
     new_price = fields.DecimalField(max_digits=12, decimal_places=2)
     percentage_discount = fields.IntField()
     offer_expiration_date = fields.DateField(default=datetime.now)
-    product_image = fields.CharEnumField(max_length=200, null=False, default="productDefault.jpg")
+    product_image = fields.CharField(max_length=200, null=False, default="productDefault.jpg")
     business = fields.ForeignKeyField("models.Business", related_name="products")
 
 user_pydantic = pydantic_model_creator(User, name="User", exclude=("is_verified", ))
