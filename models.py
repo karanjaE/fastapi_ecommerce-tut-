@@ -10,7 +10,7 @@ class User(Model):
     email = fields.CharField(max_length=200, null=False, unique=True)
     password = fields.CharField(max_length=100, null=False)
     is_verified = fields.BooleanField(default=False)
-    join_data = fields.DatetimeField(default=datetime.now)
+    join_date = fields.DatetimeField(default=datetime.now)
 
 class Business(Model):
     id = fields.IntField(pk=True, index=True)
@@ -33,7 +33,7 @@ class Product(Model):
     business = fields.ForeignKeyField("models.Business", related_name="products")
 
 user_pydantic = pydantic_model_creator(User, name="User", exclude=("is_verified", ))
-user_pydanticIn = pydantic_model_creator(User, name="UserIn", exclude_readonly=True, exclude=("is_verified", "join_data", ))
+user_pydanticIn = pydantic_model_creator(User, name="UserIn", exclude_readonly=True, exclude=("is_verified", "join_date", ))
 user_pydanticOut = pydantic_model_creator(User, name="UserOut", exclude=("password", ))
 
 business_pydantic = pydantic_model_creator(Business, name="Business")
